@@ -22,7 +22,7 @@ namespace btnhom.SQL
             try
             {
                 //inital SqlConnection
-                sqlConnection = new SqlConnection(@"Data Source=DESKTOP-DSALA6B\THIENLY;Initial Catalog=DULIEULUUTRU;Persist Security Info=True;User ID=sa");
+                sqlConnection = new SqlConnection(@"Data Source=.;Initial Catalog=draf;Integrated Security=True");
 
                 // check state of connection. If connection open then close
                 if (sqlConnection.State == ConnectionState.Open)

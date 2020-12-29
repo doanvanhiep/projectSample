@@ -125,8 +125,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\DataStatistic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQL\ConnectDB.cs" />
+    <Compile Include="SQL\DAOData.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\css\color_scheme\blue.css" />
@@ -3606,7 +3608,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="assets\video\" />
     <Folder Include="giao_dien\ngoài\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

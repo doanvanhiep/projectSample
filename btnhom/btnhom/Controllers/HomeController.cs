@@ -1,4 +1,6 @@
-﻿using System;
+﻿using btnhom.Models;
+using btnhom.SQL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +10,7 @@ namespace btnhom.Controllers
 {
     public class HomeController : Controller
     {
+        private string stateScreen = "";
         public ActionResult Index()
         {
             return View();
@@ -15,16 +18,19 @@ namespace btnhom.Controllers
 
         public ActionResult ThanhVien()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
         public ActionResult DeTai()
         {
-            ViewBag.Message = "Your contact page.";
+            List<DataStatistic> list = new DAOData().GetAllData() ;
+            return View(list);
+        }
 
-            return View();
+        public ActionResult UpdateData(string state)
+        {
+            stateScreen = state;
+            return null;
         }
     }
 }
