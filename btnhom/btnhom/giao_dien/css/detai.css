@@ -1,17 +1,26 @@
-﻿.img-about-topic
-{
-    height:250px;
+﻿.img-about-topic {
+    height: 100%;
+    width: 100%;
 }
 
 .custome-link-menu-topic {
     font-size: 25px;
     border: 1px solid white;
     box-shadow: 1px 1px 1px 5px #AAA;
-    height:500px;
+    max-height:500px;
     padding-top:30px;
 }
 
 .box-content {
-    width: 100px;
-    position:relative;
+    position: relative;
+    /*border: 1px solid red;*/
+}
+
+.text-description{
+    border:1px solid red;
+}
+
+.box{
+    height:150px;
+    margin-bottom:10px;
 }
