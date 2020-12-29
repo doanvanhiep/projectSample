@@ -1,0 +1,15 @@
+﻿.video {
+    text-align: center;
+}
+
+.control-video {
+    height: 450px;
+}
+
+.name-topic{
+    font-weight:bold;
+    font-size:35px;
+    color:red;
+}
+
+
