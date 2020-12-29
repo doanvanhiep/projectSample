@@ -5,25 +5,49 @@
 }
 
 <div>
-    <h1 style="text-align:center;">THÔNG TIN ĐỀ TÀI</h1>
-    <div class="row">
-        <div class="col-5 custome-link-menu-topic">
+    <h1 style="text-align:center;margin-bottom:30px">THÔNG TIN ĐỀ TÀI</h1>
+    <div class="row ">
+        <div class="col-3 col-offset-3 custome-link-menu-topic">
             <ol>
                 <li>
-                    <a href="#">MÔ PHỎNG</a>
+                    <a href="#" onclick="showInfo(1)">MÔ PHỎNG</a>
                 </li>
                 <li>
-                    <a href="#">DỮ LIỆU</a>
+                    <a href="#" onclick="showInfo(2)">DỮ LIỆU</a>
                 </li>
                 <li>
-                    <a href="#">THÀNH PHẦN</a>
+                    <a href="#" onclick="showInfo(3)">THÀNH PHẦN</a>
                 </li>
                 <li>
-                    <a href="#">HƯỚNG DẪN</a>
+                    <a href="#" onclick="showInfo(4)">HƯỚNG DẪN</a>
                 </li>
             </ol>
         </div>
-        <div class="col-7"><img src="~/assets/images/_smarty/Logo HCMUTE-Corel-white background.jpg" class="img-about-topic"></div>
+        <div class="col-md-offset-1 col-8 box-content" id="content-info">
+            <img src="~/assets/images/_smarty/hinh-nen-dep-may-tinh-1.jpg" class="img-about-topic"> 
+        </div>
     </div>
 </div>
-
+@section scripts{
+    <script>
+        function showInfo(id) {
+            switch (id) {
+                case 1:
+                    $("#content-info").html('<img src="../assets/images/_smarty/07f9df953582c38d9d38de1f044e7b06.png" class="img-about-topic">');
+                    break;
+                case 2:
+                    alert("Dữ liệu")
+                    break;
+                case 3:
+                    alert("Thành phần")
+                    break;
+                case 4:
+                    alert("Hướng dẫn")
+                    break;
+                default:
+                    alert("Error");
+                    break;
+            }
+        }
+    </script>
+}

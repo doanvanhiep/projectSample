@@ -4,7 +4,8 @@
 
 .size-menu {
     font-size: 25px;
-    font-style:oblique;
+    /*font-style:oblique;*/
+    font-weight:bold;
 }
 
 .group-name{
@@ -13,4 +14,8 @@
 
 
 .contain-body{
+}
+
+.logo{
+    margin-left:10%;
 }

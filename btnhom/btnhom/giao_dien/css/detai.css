@@ -3,6 +3,15 @@
     height:250px;
 }
 
-.custome-link-menu-topic{
-    font-size:25px;
+.custome-link-menu-topic {
+    font-size: 25px;
+    border: 1px solid white;
+    box-shadow: 1px 1px 1px 5px #AAA;
+    height:500px;
+    padding-top:30px;
+}
+
+.box-content {
+    width: 100px;
+    position:relative;
 }

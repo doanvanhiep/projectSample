@@ -3414,6 +3414,8 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="giao_dien\admin\cssadmin.css" />
+    <Content Include="giao_dien\css\detai.css" />
+    <Content Include="giao_dien\css\home.css" />
     <Content Include="giao_dien\css\thanhvien.css" />
     <Content Include="giao_dien\_layout.css" />
     <Content Include="Global.asax" />
