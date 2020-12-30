@@ -29,7 +29,7 @@ namespace btnhom.SQL
                 //Declare list lineitem to contain result 
                 List<DataStatistic> listDatas = new List<DataStatistic>();
 
-                for (int item = 0; item < 1000; item++)
+                for (int item = 500; item>0; item--)
                 {
                     //Declare object lineitem 
                     DataStatistic newData = new DataStatistic(item.ToString()+"A", item.ToString() + "B", item.ToString() + "C", item.ToString() + "D");

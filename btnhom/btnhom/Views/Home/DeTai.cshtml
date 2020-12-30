@@ -154,11 +154,13 @@
 @section scripts{
     <script>
         var previousState = "#mophong";
+        var tableDatas;
         $(document).ready(function () {
-            $('#example').DataTable({
+            tableDatas= $('#example').DataTable({
                 language: {
                     url: 'https://cdn.datatables.net/plug-ins/1.10.22/i18n/Vietnamese.json'
-                }
+                },
+                "order": []
             });
         });
 
@@ -172,10 +174,40 @@
 
         function reloadData() {
             if (previousState == "#data") {
-                console.log("load nè");
-                console.log(new Date());
+                let kq = "";
+                $.ajax({
+                type: "GET",
+                url: '@Url.Action("GetAllData")',
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        data.forEach((item, index) => {
+                            kq += "<tr><td>" +
+                                item["A"] +
+                                "</td><td>" +
+                                item["B"] +
+                                "</td ><td>" +
+                                item["C"] +
+                                "</td ><td>" +
+                                item["D"] +
+                                "</td ></tr>";
+                        });
+                        tableDatas.destroy();
+                        $("tbody").html(kq);
+                        tableDatas=$('#example').DataTable({
+                            language: {
+                                url: 'https://cdn.datatables.net/plug-ins/1.10.22/i18n/Vietnamese.json'
+                            },
+                            "order": []
+                        });
+                },
+                error: function () {
+                    alert("Error while reload data");
+                }
+            });
             }
         }
+
         setInterval(reloadData, 3000);
 
     </script>
