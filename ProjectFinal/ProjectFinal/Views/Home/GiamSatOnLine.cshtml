@@ -1,0 +1,68 @@
+﻿
+@model IEnumerable<ProjectFinal.Models.DataStatistic>
+@{
+    ViewBag.Title = "GiamSatOnLine";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 style="text-align:center">GIÁM SÁT ONLINE</h1>
+<div class="container">
+    <div id="data">
+        <table id="example" class="table table-striped table-bordered" style="width:100%">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Tên Cảm Biến</th>
+                    <th>Giá Trị Cảm Biến</th>
+                    <th>Thời Gian</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.ID</td>
+                        <td>@item.TEN_CB</td>
+                        <td>@item.GIA_TRI_CB</td>
+                        <td>@item.THOI_GIAN</td>
+                    </tr>
+                }
+        </table>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+
+        function reloadData() {
+           let kq = "";
+                $.ajax({
+                type: "GET",
+                url: '@Url.Action("GetAllDataOnline")',
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        data.forEach((item, index) => {
+                            kq += "<tr><td>" +
+                                item["ID"] +
+                                "</td><td>" +
+                                item["TEN_CB"] +
+                                "</td ><td>" +
+                                item["GIA_TRI_CB"] +
+                                "</td ><td>" +
+                                item["THOI_GIAN"] +
+                                "</td ></tr>";
+                        });
+                        $("tbody").html(kq);
+                },
+                error: function () {
+                    alert("Error while reload data");
+                }
+            });
+        }
+
+        setInterval(reloadData, 3000);
+
+    </script>
+}
+
