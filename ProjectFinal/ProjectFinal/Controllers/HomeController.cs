@@ -40,7 +40,7 @@ namespace ProjectFinal.Controllers
         public ActionResult DuLieu()
         {
             //GetData when the first load
-            List<DataStatistic> dataOnline = new DataDao().GetAllData();
+            List<DataStatistic> dataOnline =  new DataDao().GetAllData();
             //Return view for user
             return View(dataOnline);
         }

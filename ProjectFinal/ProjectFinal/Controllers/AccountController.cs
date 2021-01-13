@@ -63,13 +63,12 @@ namespace ProjectFinal.Controllers
                     {
                         return RedirectToAction("Login");
                     }
+                    ModelState.AddModelError("", "Đăng kí không thành công");
                 }   
                 else
                 {
                     ModelState.AddModelError("", "Mật khẩu không khớp");
-                }    
-
-                
+                }   
             }
             return View(u);
         }

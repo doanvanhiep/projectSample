@@ -7,6 +7,8 @@
     <h2>DỮ LIỆU</h2>
 </div>
 <div class="container">
+    @Html.CheckBox("isActive", true)
+    <label>Tự động cập nhập dữ liệu</label>
     <div id="data">
         <table id="example" class="table table-striped table-bordered" style="width:100%">
             <thead>
@@ -46,7 +48,7 @@
                         <td>@item.THOI_GIAN</td>
                     </tr>
                 }
-</table>
+        </table>
     </div>
 </div>
 
@@ -65,12 +67,15 @@
         });
 
         function reloadData() {
-           let kq = "";
+            var checkedUpdate = $('#isActive:checked').length > 0;
+            if (checkedUpdate) {
+                console.log("cec")
+                let kq = "";
                 $.ajax({
-                type: "GET",
-                url: '@Url.Action("GetAllData")',
-                dataType: "json",
-                contentType: "application/json; charset=utf-8",
+                    type: "GET",
+                    url: '@Url.Action("GetAllData")',
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
                     success: function (data) {
                         data.forEach((item, index) => {
                             kq += "<tr><td>" +
@@ -85,20 +90,22 @@
                         });
                         tableDatas.destroy();
                         $("tbody").html(kq);
-                        tableDatas=$('#example').DataTable({
+                        tableDatas = $('#example').DataTable({
                             language: {
                                 url: 'https://cdn.datatables.net/plug-ins/1.10.22/i18n/Vietnamese.json'
                             },
                             "order": []
                         });
-                },
-                error: function () {
-                    alert("Error while reload data");
-                }
-            });
+                    },
+                    error: function () {
+                        alert("Error while reload data");
+                    }
+                });
+            }
+            else {console.log("asd")}
         }
 
-        //setInterval(reloadData, 3000);
+        setInterval(reloadData, 3000);
 
     </script>
 }
