@@ -71,8 +71,7 @@ namespace ProjectFinal.ConnectToDB
                 };
 
                 //Query string to query data
-                //string queryString = "select Top 1 * from bang1 where ID='{0}' order by THOI_GIAN desc";
-                string queryString = "select Top 1 * from bang1 where TEN_CB='{0}' order by THOI_GIAN desc";
+                string queryString = "select Top 1 * from bang1 where ID='{0}' order by THOI_GIAN desc";
 
                 //Declare dataset, excute query and assign result to dataset
 
