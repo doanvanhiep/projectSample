@@ -1,0 +1,93 @@
+﻿@model ProjectFinal.Models.UserAdmin
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <link href="~/Assets/css/style-account.css" rel="stylesheet">
+    <!--===============================================================================================-->
+    <link rel="icon" type="~/Assets/login/image/png" href="images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Assets/login/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Assets/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Assets/login/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Assets/login/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Assets/login/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Assets/login/vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Assets/login/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Assets/login/vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Assets/login/css/util.css">
+    <link rel="stylesheet" type="text/css" href="~/Assets/login/css/main.css">
+    <!--===============================================================================================-->
+</head>
+<body>
+    <div class="limiter">
+        <div class="container-login100" style="background-image: url('images/bg-01.jpg');">
+            <div class="wrap-login100 p-l-110 p-r-110 p-t-62 p-b-33">
+                <span class="login100-form-title p-b-53">
+                    Đăng Nhập
+                </span>
+                @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+                {
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.AntiForgeryToken()
+                    @Html.LabelFor(m => m.TenDangNhap)
+                    <div class="form-group ">
+                        <div class="wrap-input100">
+                            @Html.TextBoxFor(m => m.TenDangNhap, "", new { @class = "form-control input100", @placeholder = "Tên Đăng Nhập" })
+                        </div>
+
+                        @Html.ValidationMessageFor(m => m.TenDangNhap, "", new { @class = "text-danger" })
+                    </div>
+
+                    @Html.LabelFor(m => m.MatKhau)
+                    <div class="form-group">
+                        <div class="wrap-input100">
+                            @Html.PasswordFor(m => m.MatKhau, new { @class = "form-control input100", @placeholder = "Mật Khẩu" })
+                        </div>
+                        @Html.ValidationMessageFor(m => m.MatKhau, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" name="submit" class="btn btn-primary" value="Đăng nhập" />
+                        <a class="btn btn-success" href="~/Account/Register">Đăng kí</a>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+
+
+    <div id="dropDownSelect1"></div>
+
+    <!--===============================================================================================-->
+    <script src="~/Assets/login/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Assets/login/vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Assets/login/vendor/bootstrap/js/popper.js"></script>
+    <script src="~/Assets/login/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Assets/login/vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Assets/login/vendor/daterangepicker/moment.min.js"></script>
+    <script src="~/Assets/login/vendor/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Assets/login/vendor/countdowntime/countdowntime.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Assets/login/js/main.js"></script>
+</body>
+</html>

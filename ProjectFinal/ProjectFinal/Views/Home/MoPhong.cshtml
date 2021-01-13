@@ -13,13 +13,13 @@
                 <h2 class="section-title">MÔ PHỎNG</h2>
                 <p>
                     >>Bên đây là giao diện hoạt động của hệ thống. Hệ thống có 6 cảm biến: 3 cảm biến áp suất, 3 cảm biến độ bụi.<br>
-                    
+
                 </p>
                 <p>
                     >>Hệ thống có 2 chế độ hoạt động là Auto và Manual. Với chế độ Auto người sử dụng chỉ cần nhấn 2 lượt là nút START và AUTO.<br>
                     >>Còn với chế độ Manual người sử dụng sẽ phải thường trực tại màn hình giám sát để theo dõi điều khiển trên bảng điều khiển, hoặc có thể điều khiển trực tiếp hệ thống tại các string pin ngoài thực tế.
                 </p>
-                
+
             </div>
             <div class="col-md-8">
                 <video controls style="width:95%;margin-left:10px">
@@ -31,3 +31,10 @@
     </div>
 </div>
 <!-- About End -->
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $("#2").addClass("active");
+        });
+    </script>
+}
