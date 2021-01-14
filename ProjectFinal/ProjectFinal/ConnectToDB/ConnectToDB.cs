@@ -22,7 +22,8 @@ namespace ProjectFinal.ConnectToDB
             try
             {
                 //inital SqlConnection
-                sqlConnection = new SqlConnection(@"Data Source=DESKTOP-DSALA6B\THIENLY;Initial Catalog=DULIEULUUTRU;User ID=sa;Password=18154033");
+                //sqlConnection = new SqlConnection(@"Data Source=DESKTOP-DSALA6B\THIENLY;Initial Catalog=DULIEULUUTRU;User ID=sa;Password=18154033");
+                sqlConnection = new SqlConnection(@"Data Source=.;Initial Catalog=DULIEULUUTRU;Integrated Security=True");
                 
                 // check state of connection. If connection open then close
                 if (sqlConnection.State == ConnectionState.Open)

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -25,11 +26,12 @@ namespace ProjectFinal.ConnectToDB
                 ConnectToDB connectToDB = new ConnectToDB();
 
                 //Query string to query data
-                //string queryString = "select * from Admin where TenDangNhap = @tenDangNhap and MatKhau=@matKhau";
-                string queryString = string.Format("select * from Admin where TenDangNhap = '{0}' and MatKhau='{1}'",
-                    userAdmin.TenDangNhap,GetMD5(userAdmin.MatKhau));
+                string queryString = "select * from Admin where TenDangNhap = @tenDangNhap and MatKhau=@matKhau";
+                //string queryString = string.Format("select * from Admin where TenDangNhap = '{0}' and MatKhau='{1}'",
+                //    userAdmin.TenDangNhap,GetMD5(userAdmin.MatKhau));
                 //Declare dataset, excute query and assign result to dataset
-                DataSet dsResult = connectToDB.ExecuteQueryDataSet(queryString, System.Data.CommandType.Text, ref errorMessage);
+                DataSet dsResult = connectToDB.ExecuteQueryDataSet(queryString, System.Data.CommandType.Text, ref errorMessage, 
+                  new SqlParameter("@tenDangNhap", userAdmin.TenDangNhap), new SqlParameter("@matKhau", GetMD5(userAdmin.MatKhau)));
 
                 if (dsResult != null && dsResult.Tables[0].Rows.Count > 0)
                 {

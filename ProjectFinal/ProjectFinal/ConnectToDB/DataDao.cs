@@ -54,6 +54,48 @@ namespace ProjectFinal.ConnectToDB
                 return null;
             }
         }
+
+        public List<DataStatistic> GetAllDataByTime(string startDate,string endDate)
+        {
+            try
+            {
+                //Inital class connecto to DB
+                ConnectToDB connectToDB = new ConnectToDB();
+
+                //Query string to query data
+                string queryString = string.Format("select top 200 * from bang1 where " +
+                    "THOI_GIAN >= '{0}' and THOI_GIAN <= '{1}' order by THOI_GIAN desc",startDate,endDate);
+                //Declare dataset, excute query and assign result to dataset
+                DataSet dsResult = connectToDB.ExecuteQueryDataSet(queryString, System.Data.CommandType.Text, ref errorMessage);
+
+                //Declare list DataStatistic to contain result 
+                List<DataStatistic> listDatas = new List<DataStatistic>();
+
+                //Check dataset result difference null and number of row in table's datataset larger than 0
+                if (dsResult != null && dsResult.Tables[0].Rows.Count > 0)
+                {
+                    //Loop result in table result to assign data 
+                    foreach (DataRow data in dsResult.Tables[0].Rows)
+                    {
+                        DataStatistic newData = new DataStatistic(data["ID"].ToString(),
+                            data["TEN_CB"].ToString(), Convert.ToDouble(data["GIA_TRI_CB"].ToString()),
+                            ((DateTime)data["THOI_GIAN"]).ToString("dd/MM/yyyy hh:mm:ss tt"));
+
+                        //Add object lineitem to list result
+                        listDatas.Add(newData);
+                    }
+                }
+
+                //return result
+                return listDatas;
+            }
+            catch (Exception exception)
+            {
+                //Assin error and return result
+                errorMessage = exception.Message;
+                return null;
+            }
+        }
         public List<DataStatistic> GetAllDataOnline()
         {
             try

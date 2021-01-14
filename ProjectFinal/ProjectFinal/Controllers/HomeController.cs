@@ -45,6 +45,13 @@ namespace ProjectFinal.Controllers
             return View(dataOnline);
         }
 
+        public ActionResult LichSuHoatDong()
+        {
+            //GetData when the first load
+            List<LichSuHoatDong> dataHistory = new LichSuHoatDongDao().GetAllDataLichSuHoatDong();
+            //Return view for user
+            return View(dataHistory);
+        }
         public ActionResult ThanhPhanHeThong()
         {
             //Return view for user
@@ -66,5 +73,21 @@ namespace ProjectFinal.Controllers
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult GetAllDataLichSuHoatDongByTime(string startDate, string endDate)
+        {
+            //GetData when the first load
+            List<LichSuHoatDong> dataHistory = new LichSuHoatDongDao().GetAllDataLichSuHoatDongByTime(startDate, endDate);
+            //Return view for user
+            return Json(dataHistory, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetAllDataByTime(string startDate, string endDate)
+        {
+            //Load data after 2 minutes
+            List<DataStatistic> list = new DataDao().GetAllDataByTime(startDate, endDate);
+
+            //Retrun json cause call AJAX only receive format json
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
     }
 }

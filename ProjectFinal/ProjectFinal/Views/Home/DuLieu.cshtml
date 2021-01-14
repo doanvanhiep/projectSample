@@ -1,4 +1,5 @@
 ﻿
+@model IEnumerable<ProjectFinal.Models.DataStatistic>
 @{
     ViewBag.Title = "GiamSat";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -7,6 +8,13 @@
     <h2>DỮ LIỆU</h2>
 </div>
 <div class="container">
+    <div class="findbytime">
+        <label>Từ</label>
+        <input type="datetime-local" name="StartDate" value="" id="startDate" />
+        <label>Đến</label>
+        <input type="datetime-local" name="EndDate" value="" id="endDate" />
+        <input type="button" name="btnFind" value="Tìm kiếm" class="btn btn-success" onclick="findData()" />
+    </div>
     @Html.CheckBox("isActive", true)
     <label>Tự động cập nhập dữ liệu</label>
     <div id="data">
@@ -20,25 +28,6 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>@item.ID</td>
-                        <td>@item.TEN_CB</td>
-                        <td>@item.GIA_TRI_CB</td>
-                        <td>@item.THOI_GIAN</td>
-                    </tr>
-                }
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>@item.ID</td>
-                        <td>@item.TEN_CB</td>
-                        <td>@item.GIA_TRI_CB</td>
-                        <td>@item.THOI_GIAN</td>
-                    </tr>
-                }
-
                 @foreach (var item in Model)
                 {
                     <tr>
@@ -69,7 +58,6 @@
         function reloadData() {
             var checkedUpdate = $('#isActive:checked').length > 0;
             if (checkedUpdate) {
-                console.log("cec")
                 let kq = "";
                 $.ajax({
                     type: "GET",
@@ -102,10 +90,53 @@
                     }
                 });
             }
-            else {console.log("asd")}
         }
 
         setInterval(reloadData, 3000);
+
+        function findData() {
+            var startDate = moment(new Date($('#startDate').val())).format('YYYY-MM-DD HH:mm:ss.000');
+            var endDate = moment(new Date($('#endDate').val())).format('YYYY-MM-DD HH:mm:ss.000');
+            reloadDataByTime(startDate, endDate)
+        };
+
+        function reloadDataByTime(startDate, endDate) {
+             let kq = "";
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("GetAllDataByTime")',
+                data: {
+                    "startDate": startDate,
+                    "endDate": endDate
+                },
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    data.forEach((item, index) => {
+                        kq += "<tr><td>" +
+                            item["ID"] +
+                            "</td><td>" +
+                            item["TEN_CB"] +
+                            "</td ><td>" +
+                            item["GIA_TRI_CB"] +
+                            "</td ><td>" +
+                            item["THOI_GIAN"] +
+                            "</td ></tr>";
+                    });
+                    tableDatas.destroy();
+                    $("tbody").html(kq);
+                    tableDatas = $('#example').DataTable({
+                        language: {
+                            url: 'https://cdn.datatables.net/plug-ins/1.10.22/i18n/Vietnamese.json'
+                        },
+                        "order": []
+                    });
+                },
+                error: function () {
+                    alert("Error while reload data");
+                }
+            });
+        }
 
     </script>
 }
